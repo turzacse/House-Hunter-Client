@@ -8,6 +8,7 @@ import {
 import "./index.css";
 import Layout from './Layout/Layout.jsx';
 import Home from './Pages/Home/Home.jsx';
+import Signup from './Authentication/Shared/Signup.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/signup',
+    element: <Signup/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
