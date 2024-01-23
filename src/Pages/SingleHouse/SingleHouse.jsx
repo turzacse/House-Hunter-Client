@@ -46,7 +46,7 @@ const SingleHouse = () => {
         const data  = {houseID:id, userId:people._id, userName:people?.fullName, userEmail:people?.email, userPhone:people?.phone};
         console.log(room._id,data);
 
-        fetch('https://speedy-send-server.vercel.app/users', {
+        fetch('http://localhost:3000/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json' 
@@ -56,6 +56,7 @@ const SingleHouse = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            alert('success');
         })
     
     }

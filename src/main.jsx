@@ -14,6 +14,7 @@ import AddHouse from './Pages/AddAHouse/AddHouse.jsx';
 import Dashboard from './Layout/Dashboard.jsx';
 import AllHouses from './Pages/Dashboard/All Houses/AllHouses.jsx';
 import SingleHouse from './Pages/SingleHouse/SingleHouse.jsx';
+import MyBooking from './Pages/Dashboard/MyBooking/MyBooking.jsx';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/allhouses',
         element: <AllHouses/>
+      },
+      {
+        path: '/dashboard/bookings',
+        element: <MyBooking/>
       }
     ]
   },

@@ -8,18 +8,18 @@ const AllHouses = () => {
     const loggedUser = useLoggedUser();
     const [allRoom, setAllRoom] = useState([]);
     const [owenrRoom, setOwerRoom] = useState([]);
-    useEffect( () => {
+    useEffect(() => {
         fetch('http://localhost:3000/rooms')
-        .then(res => res.json())
-        .then(data => setAllRoom(data))
-    } ,[])
+            .then(res => res.json())
+            .then(data => setAllRoom(data))
+    }, [])
 
-    useEffect( () => {
-        if(allRoom && loggedUser) {
+    useEffect(() => {
+        if (allRoom && loggedUser) {
             const House = allRoom.filter((room) => room?.userEmail === loggedUser?.email);
             setOwerRoom(House);
         }
-    } ,[allRoom])
+    }, [allRoom])
 
     const handleDelete = _id => {
         console.log(_id);
@@ -58,31 +58,31 @@ const AllHouses = () => {
         <div>
             All houses
             <table className='table'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Available date</th>
-          <th>Rent</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Available date</th>
+                        <th>Rent</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-      <tbody>
-        {owenrRoom.map((room) => (
-          <tr key={room._id}>
-            <td>{room.name}</td>
-            <td>{room.address}</td>
-            <td>{room.city}</td>
-            <td>{room.rent}</td>
-            <td>
-              <button className='text-red-600 text-2xl mr-2' onClick={() => handleDelete(room._id)}><MdDelete/></button>
-              <button className='text-green-600 text-2xl' onClick={() => handleEdit(room)}><MdEdit/></button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                <tbody>
+                    {owenrRoom.map((room) => (
+                        <tr key={room._id}>
+                            <td>{room.name}</td>
+                            <td>{room.address}</td>
+                            <td>{room.city}</td>
+                            <td>{room.rent}</td>
+                            <td>
+                                <button className='text-red-600 text-2xl mr-2' onClick={() => handleDelete(room._id)}><MdDelete /></button>
+                                <button className='text-green-600 text-2xl' onClick={() => handleEdit(room)}><MdEdit /></button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };

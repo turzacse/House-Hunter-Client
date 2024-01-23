@@ -59,9 +59,9 @@ const Dashboard = () => {
                                 <>
                                     <h2 className="text-xl font-bold text-center">House Renter</h2>
                                     <div className="divider"></div>
-                                    <li><NavLink to='/dashboard/allhouses'>Bookings</NavLink></li>
+                                    <li><NavLink to='/dashboard/bookings'>Bookings</NavLink></li>
 
-                                    <li><NavLink to='/addhouse'>Add a House</NavLink></li>
+                                    
                                 </>
                             )
                         }
