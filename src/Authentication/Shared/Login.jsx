@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -32,7 +32,7 @@ const Login = () => {
         const result = await response.json();
         login(loginData);
         alert('success');
-        navigate(location?.state ? location.state : '/');
+        navigate(location?.state ? location.state : '/dashboard');
         console.log(result.token); // Output the JWT token received from the server
       } else {
         const errorResult = await response.json();
@@ -81,6 +81,7 @@ const Login = () => {
                   required
                 />
               </div>
+              <p className=''>You are new in our website! <NavLink className='text-blue-600' to='/signup'>Please Register</NavLink></p>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
                   Login

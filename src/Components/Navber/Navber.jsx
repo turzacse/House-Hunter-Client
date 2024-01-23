@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const Navber = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
+    const navigate = useNavigate();
+  const location = useLocation();
+
+    const { user, login, logout, loading } = useContext(AuthContext);
     const handleToggle = e => {
         if (e.target.checked) {
             setTheme("dark");
@@ -19,7 +24,7 @@ const Navber = () => {
         document.querySelector("html").setAttribute("data-theme", localTheme);
     }, [theme])
 
-    const defualt = "https://i.ibb.co/9rczVxc/user.png";
+    
 
     const [logged, setLogged] = useState([]);
     useEffect(() => {
@@ -31,12 +36,16 @@ const Navber = () => {
     }, [])
 
     console.log(logged);
+    const handleLogout = () => {
+        logout();
+        navigate(location?.state ? location.state : '/login');
+    }
 
     // /console.log(people);
     const links = [
         <li><NavLink to='/'>Home</NavLink></li>,
-        <li><NavLink to='/addcontacts'>Add Contacts</NavLink></li>,
-        <li><NavLink to='/contacts'>All Contacts</NavLink></li>
+        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>,
+        // <li><NavLink to='/contacts'>All Contacts</NavLink></li>
     ]
     return (
         <div className="px-10 bg-gray-400">
@@ -51,7 +60,7 @@ const Navber = () => {
                         </ul>
                     </div>
                     <Link>
-                        <img className="w-[150px]" src='https://i.ibb.co/FDp4ddm/Capture-removebg-preview.png' alt="" />
+                        <img className="w-1/3 h-1/3 rounded-full " src='https://i.ibb.co/vJPrKmH/logo2.png' alt=""/>
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -73,7 +82,31 @@ const Navber = () => {
 
                     </label>
                     <div>
-                        <div className="dropdown dropdown-end">
+                    {logged.length !==0 ? (
+                            <>
+
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img className="rounded-full flex justify-center items-center mx-auto" src="https://i.ibb.co/PWpDvJn/avatar.jpg" alt="user profile" />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                        <li><button onClick={handleLogout} className="text-red-600 font-bold" >Log Out</button></li>
+                                        <p className='ml-3'>
+                                            <div className="justify-between">
+                                                <h2 className='text-green-500 font-semibold'></h2>
+                                            </div>
+                                        </p>
+                                        
+                                    </ul>
+                                </div>
+
+                            </>
+                        ) : (
+                            <NavLink to='/login' className="btn btn-outline btn-warning">Login</NavLink>
+                        )}
+                        {/* <div className="dropdown dropdown-end">
                             <h2>{logged.email}</h2>
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -87,7 +120,7 @@ const Navber = () => {
                                     }  
                                 </div>
                             </label>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -119,6 +120,7 @@ const Signup = () => {
                   required
                 />
               </div>
+              <p className=''>Already Register in our website! <NavLink className='text-blue-600' to='/login'>Please Login</NavLink></p>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
                   Register

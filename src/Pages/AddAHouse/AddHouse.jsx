@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
+import useLoggedUser from '../../Hooks/useLogged';
 
 const AddHouse = () => {
+
+    const loggedUser = useLoggedUser();
+        console.log(loggedUser);
 
     const key = import.meta.env.VITE_IMAGE_HOSTING
     const image_hosting_key = `https://api.imgbb.com/1/upload?key=${key}`;
@@ -38,7 +42,7 @@ const AddHouse = () => {
 
     console.log(img);
     //console.log(handleUpload);
-    const handleAddProject = e => {
+    const handleAddRoom = e => {
         e.preventDefault();
 
         const form = e.target;
@@ -53,7 +57,9 @@ const AddHouse = () => {
         const rent = form.rent.value;
         const phone = form.phone.value;
         const description = form.description.value;
-
+       
+        
+        const userEmail = loggedUser?.email;
 
         if (!img) {
             console.log("Image upload in progress. Please wait.");
@@ -65,29 +71,29 @@ const AddHouse = () => {
             })
             return;
         }
-        const project = { name, address, city, bedroom, bathroom, size, available, rent,  phone, description, img }
+        const project = { name, address, city, bedroom, bathroom, size, available, rent,  phone, description, img, userEmail }
 
         console.log(project);
         //send data 
-        // fetch('https://contacts-management-server.vercel.app/contacts', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(project)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.insertedId) {
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Your contact info has been added',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             })
-        //         }
-        //     })
+        fetch('http://localhost:3000/rooms', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Your room has been added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
         // e.target.reset();
     }
     return (
@@ -97,7 +103,7 @@ const AddHouse = () => {
             </Helmet>
             <div className="bg-base-200 p-10 md:w-1/2 w-full mx-auto shadow-2xl my-4 rounded-2xl">
                 <h3 className="text-2xl font-semibold text-center mb-10">Add A Contact Info</h3>
-                <form onSubmit={handleAddProject}>
+                <form onSubmit={handleAddRoom}>
 
                     <label>Room's Picture</label>
                     <br />
