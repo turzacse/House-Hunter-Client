@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../Provider/AuthContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, login, logout, loading } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -24,7 +30,9 @@ const Login = () => {
 
       if (response.ok) {
         const result = await response.json();
+        login(loginData);
         alert('success');
+        navigate(location?.state ? location.state : '/');
         console.log(result.token); // Output the JWT token received from the server
       } else {
         const errorResult = await response.json();
