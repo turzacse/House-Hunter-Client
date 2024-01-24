@@ -20,7 +20,7 @@ const Room = () => {
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const roomsPerPage = 5;
+    const roomsPerPage = 10;
     const [displayedRooms, setDisplayedRooms] = useState([]);
 
     useEffect(() => {
@@ -62,9 +62,16 @@ const Room = () => {
     }, [allUsers])
 
     const handleReset = () => {
-        useEffect( () => {
-            setFilter(rooms);
-        } ,[rooms])
+        setQuery("");
+        setCityFilter("");
+        setBedroomFilter("");
+        setBathroomFilter("");
+        setSizeFilter("");
+        setAvailabilityFilter("");
+        setRentFilter("");
+        setFilter(rooms);
+        setDisplayedRooms(rooms.slice(0, roomsPerPage));
+        setCurrentPage(1);
     }
 
     const paginate = (pageNumber) => {
