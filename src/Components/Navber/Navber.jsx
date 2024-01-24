@@ -44,8 +44,11 @@ const Navber = () => {
     // /console.log(people);
     const links = [
         <li><NavLink to='/'>Home</NavLink></li>,
-        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>,
-        // <li><NavLink to='/contacts'>All Contacts</NavLink></li>
+        <li>
+            {
+                logged?.email && <NavLink to='/dashboard'>Dashboard</NavLink>
+            }
+        </li>,
     ]
     return (
         <div className="px-10 bg-gray-400">

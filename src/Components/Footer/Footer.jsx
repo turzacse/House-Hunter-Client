@@ -20,8 +20,8 @@ const Footer = () => {
                 <nav>
                     <header className="footer-title">Contact Solution</header>
                     <Link to='/'>Home</Link>
-                    <Link to='/addcontacts'>Add Contacts</Link>
-                    <Link to='/contacts'>All Contacts</Link>
+                    <Link >House Owner</Link>
+                    <Link >House Renter</Link>
                 </nav>
                 <nav>
                     <header className="footer-title">Feature</header>
@@ -32,8 +32,8 @@ const Footer = () => {
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
                 <aside className="items-center grid-flow-col">
-                    <img className='w-[80px] h-[80px]' src="https://i.ibb.co/6DFF7Dr/neutron-icon.png" alt="" />
-                    <p>Contact Solution<br />Providing reliable service since 2023</p>
+                    <img className='w-[80px] h-[80px] rounded-full shadow-2xl' src="https://i.ibb.co/SmZPF24/ba2.jpg" alt="" />
+                    <p>House Hunterr<br />Providing reliable service since 2023</p>
                 </aside>
                 <nav className="md:place-self-center md:justify-self-end">
                     <div className="grid text-2xl grid-flow-col gap-4">
