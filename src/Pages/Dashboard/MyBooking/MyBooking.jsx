@@ -9,7 +9,7 @@ const MyBooking = () => {
     const [myBoking, setMyBooking] = useState([]);
     
     useEffect( () => {
-        fetch('http://localhost:3000/bookings')
+        fetch('https://house-hunter-server-puce.vercel.app/bookings')
         .then(res => res.json())
         .then(data => setBookingData(data))
     } ,[])
@@ -34,7 +34,7 @@ const MyBooking = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/bookings/${_id}`, {
+                fetch(`https://house-hunter-server-puce.vercel.app/bookings/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

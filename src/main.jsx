@@ -30,12 +30,12 @@ const router = createBrowserRouter([
       {
         path: '/house/:id',
         element: <SingleHouse/>,
-        loader: async({ params }) => await fetch(`http://localhost:3000/rooms/${params.id}`)
+        loader: async({ params }) => await fetch(`https://house-hunter-server-puce.vercel.app/rooms/${params.id}`)
       },
       {
         path: '/update/:id',
         element: <Update/>,
-        loader: async({ params }) => await fetch(`http://localhost:3000/rooms/${params.id}`)
+        loader: async({ params }) => await fetch(`https://house-hunter-server-puce.vercel.app/rooms/${params.id}`)
       },
       {
         path: '/addhouse',

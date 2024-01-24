@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault();
     console.log(formData);
     try {
-        const response = await fetch('http://localhost:3000/register', {
+        const response = await fetch('https://house-hunter-server-puce.vercel.app/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

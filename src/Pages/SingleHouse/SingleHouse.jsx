@@ -11,12 +11,12 @@ const SingleHouse = () => {
     const [people, setpeople] = useState([]);
     const logged = useLoggedUser();
     useEffect(() => {
-        fetch('http://localhost:3000/rooms')
+        fetch('https://house-hunter-server-puce.vercel.app/rooms')
             .then(res => res.json())
             .then(data => setRooms(data))
     }, [])
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://house-hunter-server-puce.vercel.app/users')
             .then(res => res.json())
             .then(data => setAllUsers(data))
     }, [])
@@ -43,7 +43,7 @@ const SingleHouse = () => {
         const data  = {houseID:id, userId:people._id, userName:people?.fullName, userEmail:people?.email, userPhone:people?.phone};
         console.log(room._id,data);
 
-        fetch('http://localhost:3000/bookings', {
+        fetch('https://house-hunter-server-puce.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json' 

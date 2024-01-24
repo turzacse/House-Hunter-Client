@@ -10,7 +10,7 @@ const useUser = (user, setUser, setEmail, setLoading) => {
       if (user) {
         try {
           const response = await axios.post(
-            "http://localhost:3000/jwt",
+            "https://house-hunter-server-puce.vercel.app/jwt",
             { email: user.email }
           );
 
@@ -30,7 +30,7 @@ const useUser = (user, setUser, setEmail, setLoading) => {
           localStorage.removeItem("authToken");
 
           const response = await axios.post(
-            "http://localhost:3000/logout",
+            "https://house-hunter-server-puce.vercel.app/logout",
             { email: user.email }
           );
 

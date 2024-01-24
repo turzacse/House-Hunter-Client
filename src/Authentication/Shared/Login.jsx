@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     console.log(loginData);
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('https://house-hunter-server-puce.vercel.app/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

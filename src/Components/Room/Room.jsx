@@ -13,7 +13,7 @@ const Room = () => {
     const myBooking = useBooking();
 
     useEffect(() => {
-        fetch('http://localhost:3000/rooms')
+        fetch('https://house-hunter-server-puce.vercel.app/rooms')
             .then(res => res.json())
             .then(data => {
                 setRooms(data);
@@ -30,7 +30,7 @@ const Room = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://house-hunter-server-puce.vercel.app/users')
             .then(res => res.json())
             .then(data => setAllUsers(data))
     }, [])

@@ -15,7 +15,7 @@ const AuthProvider = ({children}) => {
           const fetchUserDetails = async () => {
             try {
               const response = await axios.post(
-                "http://localhost:3000/user-details",
+                "https://house-hunter-server-puce.vercel.app/user-details",
                 { token: storedToken }
               );
               setUser(response.data.user);

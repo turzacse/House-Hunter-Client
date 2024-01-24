@@ -10,7 +10,7 @@ const AllHouses = () => {
     const [allRoom, setAllRoom] = useState([]);
     const [owenrRoom, setOwerRoom] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3000/rooms')
+        fetch('https://house-hunter-server-puce.vercel.app/rooms')
             .then(res => res.json())
             .then(data => setAllRoom(data))
     }, [])
@@ -35,7 +35,7 @@ const AllHouses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/rooms/${_id}`, {
+                fetch(`https://house-hunter-server-puce.vercel.app/rooms/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

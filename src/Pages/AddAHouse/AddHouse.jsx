@@ -75,7 +75,7 @@ const AddHouse = () => {
 
         console.log(project);
         //send data 
-        fetch('http://localhost:3000/rooms', {
+        fetch('https://house-hunter-server-puce.vercel.app/rooms', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

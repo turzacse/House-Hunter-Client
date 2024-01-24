@@ -7,7 +7,7 @@ const Dashboard = () => {
     const [users, setUsers] = useState([]);
     const [logger, setLogger] = useState("");
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('https://house-hunter-server-puce.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data));
     }, [])
