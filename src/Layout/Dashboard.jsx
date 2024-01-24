@@ -24,10 +24,10 @@ const Dashboard = () => {
     console.log(loggedinUser?.email, logger?.role);
     return (
         <div>
-            <div className="flex gap-10 mx-20">
-                <div className="w-60 min-h-screen bg-orange-200 ">
+            <div className="flex md:gap-10 md:mx-20">
+                <div className="md:w-60 w-32 min-h-screen bg-orange-200 ">
                     <div>
-                        <img className="w-1/2 mx-auto   rounded-full" src="https://i.ibb.co/vJPrKmH/logo2.png" alt="" />
+                        <img className="md:w-1/2 w-1/3 mx-auto   rounded-full" src="https://i.ibb.co/vJPrKmH/logo2.png" alt="" />
                         {/* <h1 className="text-3xl font-bold text-center">Speedy Send</h1> */}
                     </div>
                     <ul className="menu p-4 text-lg ">
@@ -39,7 +39,7 @@ const Dashboard = () => {
                         {
                             logger && logger?.role === 'House Owner' && (
                                 <>
-                                    <h2 className="text-xl font-bold text-center">House Owner</h2>
+                                    <h2 className="md:text-xl text-sm font-bold text-center">House Owner</h2>
                                     <div className="divider"></div>
                                     <li><NavLink to='/dashboard/allhouses'>All Houses</NavLink></li>
 
@@ -51,7 +51,7 @@ const Dashboard = () => {
                         {
                             logger && logger?.role === 'House Renter' && (
                                 <>
-                                    <h2 className="text-xl font-bold text-center">House Renter</h2>
+                                    <h2 className="md:text-xl text-sm font-bold text-center">House Renter</h2>
                                     <div className="divider"></div>
                                     <li><NavLink to='/dashboard/bookings'>Bookings</NavLink></li>
 
@@ -59,13 +59,9 @@ const Dashboard = () => {
                                 </>
                             )
                         }
-
-
                         <div className="divider"></div>
 
-
                         <li><NavLink to='/'><div /> Home</NavLink></li>
-                        {/* <li><p><IoMdLogOut /> Logout</p></li> */}
 
                     </ul>
                 </div>

@@ -82,22 +82,22 @@ const Room = () => {
     };
 
     return (
-        <div className='mx-20'>
+        <div className='md:mx-20 mx-2'>
             <h2 className='text-center text-5xl font-bold mb-5'>Our Feature Room</h2>
             <div className='divider'></div>
             <div className=" grid md:grid-cols-4 grid-cols-2 gap-4 mb-5">
-                <div className="lg:w-1/4">
+                <div className="w-[100px]">
                     <input
                         type="text"
                         placeholder="Name"
-                        className="input input-bordered pr-16"
+                        className="w-[200px] input input-bordered pr-16"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
-                <div className="lg:w-1/4">
+                <div className="w-[200px]">
                     <select
-                        className="select select-bordered pr-16"
+                        className="w-[200px] select select-bordered pr-16"
                         value={cityFilter}
                         onChange={(e) => setCityFilter(e.target.value)}
                     >
@@ -108,9 +108,9 @@ const Room = () => {
                     </select>
                 </div>
 
-                <div className="lg:w-1/4">
+                <div className="w-1/2">
                     <select
-                        className="select select-bordered pr-16"
+                        className="w-[200px] select select-bordered pr-16"
                         value={bedroomFilter}
                         onChange={(e) => setBedroomFilter(e.target.value)}
                     >
@@ -122,9 +122,9 @@ const Room = () => {
                     </select>
                 </div>
 
-                <div className="lg:w-1/4">
+                <div className="w-1/2">
                     <select
-                        className="select select-bordered pr-16"
+                        className="w-[200px] select select-bordered pr-16"
                         value={bathroomFilter}
                         onChange={(e) => setBathroomFilter(e.target.value)}
                     >
@@ -136,9 +136,9 @@ const Room = () => {
                     </select>
                 </div>
 
-                <div className="lg:w-1/4">
+                <div className="w-1/2">
                     <select
-                        className="select select-bordered pr-16"
+                        className=" w-[200px] select select-bordered pr-16"
                         value={sizeFilter}
                         onChange={(e) => setSizeFilter(e.target.value)}
                     >
@@ -151,9 +151,9 @@ const Room = () => {
                         {/* Add more options as needed */}
                     </select>
                 </div>
-                <div className="lg:w-1/4">
+                <div className="w-[200px]">
                     <select
-                        className="select select-bordered pr-16"
+                        className="w-[200px] select select-bordered pr-16"
                         value={rentFilter}
                         onChange={(e) => setRentFilter(e.target.value)}
                     >
@@ -166,8 +166,8 @@ const Room = () => {
                     </select>
                 </div>
 
-                <button onClick={handleSearch} className="text-blue-600 btn bg-orange-200 lg:ml-2">Search & Filter</button>
-                <button onClick={handleReset} className=" btn bg-red-600 text-white w-[100px]  lg:ml-2">Reset</button>
+                <button onClick={handleSearch} className="text-blue-600 w-[200px] btn bg-orange-200 lg:ml-2">Search & Filter</button>
+                <button onClick={handleReset} className=" btn bg-red-600 w-[200px] text-white  lg:ml-2">Reset</button>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>

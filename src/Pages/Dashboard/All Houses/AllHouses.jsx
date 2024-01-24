@@ -56,8 +56,9 @@ const AllHouses = () => {
     }
     console.log(loggedUser?.email, allRoom);
     return (
-        <div>
-            All houses
+        <div className='w-[300px] md:w-full'>
+            <h2 className='text-center font-bold text-xl md:text-3xl'>Your Houses</h2>
+            <div className='divider'></div>
             <table className='table'>
                 <thead>
                     <tr>

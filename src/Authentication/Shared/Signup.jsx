@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthContext';
@@ -13,39 +14,49 @@ const Signup = () => {
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { login  } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const isPhoneNumberValid = (phoneNumber) => {
+    return phoneNumber.length === 11 && /^\d+$/.test(phoneNumber);
+  };
+
   const handleRegistration = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    // Validate phone number before sending the request
+    if (!isPhoneNumberValid(formData.phoneNumber)) {
+      setErr("Invalid phone number. Please enter a valid phone number.");
+      return;
+    }
+
     try {
-        const response = await fetch('https://house-hunter-server-puce.vercel.app/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
-    
-        if (response.ok) {
-          const result = await response.json();
-          console.log(result.message);
-          const loginData = {email: formData.email, password:formData.password};
-          login(loginData);
-          navigate(location?.state ? location.state : '/dashboard');
-        } else {
-          const errorResult = await response.json();
-          console.error(`Registration failed: ${errorResult.message}`);
-          setErr(errorResult.message)
-        }
-      } catch (error) {
-        console.error('Error during registration:', error);
-        setErr(error);
+      const response = await fetch('https://house-hunter-server-puce.vercel.app/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message);
+        const loginData = { email: formData.email, password: formData.password };
+        login(loginData);
+        navigate(location?.state ? location.state : '/dashboard');
+      } else {
+        const errorResult = await response.json();
+        console.error(`Registration failed: ${errorResult.message}`);
+        setErr(errorResult.message);
       }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      setErr(error);
+    }
   };
 
   return (
@@ -57,7 +68,7 @@ const Signup = () => {
             <img className="w-2/3" src="https://i.ibb.co/RGF2vzZ/auth.png" alt="" />
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body" onSubmit={handleRegistration}>
+          <form className="card-body" onSubmit={handleRegistration}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Full Name</span>
@@ -149,5 +160,4 @@ const Signup = () => {
     </div>
   );
 };
-
 export default Signup;

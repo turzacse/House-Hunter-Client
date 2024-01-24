@@ -53,7 +53,7 @@ const MyBooking = () => {
             }
         })
     }
-
+console.log(myBoking);
     return (
         <div>
             
@@ -69,7 +69,7 @@ const MyBooking = () => {
                 <tbody>
                     {myBoking.map((room) => (
                         <tr key={room._id}>
-                            <td>{room.houseID}</td>
+                            <td>{room.name}</td>
                             <td>
                                 <button className='text-red-600 btn text-3xl mr-2' onClick={() => handleDelete(room._id)}><MdDelete /></button>
                                 {/* <button className='text-green-600 text-2xl' onClick={() => handleEdit(room)}><MdEdit /></button> */}
