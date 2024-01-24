@@ -37,7 +37,7 @@ const Room = () => {
 
     useEffect(() => {
         if (allUsers) {
-            const user = allUsers.filter((data) => data.email === loggedUser.email);
+            const user = allUsers.filter((data) => data.email === loggedUser?.email);
             setLog(user);
         }
     }, [allUsers])
@@ -86,6 +86,8 @@ const Room = () => {
                                 <div className="card-actions justify-end">
 
                                     {
+                                        loggedUser? <>
+                                        {
                                         log[0]?.role == 'House Owner' ? <>
                                             <p className='text-red-600 font-medium'>You are a House Owner! You have no right to book</p>
                                         </>
@@ -111,6 +113,13 @@ const Room = () => {
                                                 }
 
                                             </>
+                                    }
+                                        </> : <>
+                                        <div className='block'>
+                                        <h2 className='text-xl font-medium text-red-600'>You have not login/signup yet</h2>
+                                        <h2 className='text-green-500 font-medium text-xl'>Please <NavLink className='text-blue-800' to='/login'>Login</NavLink> or <NavLink className='text-blue-800' to='/signup'>SignUp</NavLink> First</h2>
+                                        </div>
+                                        </>
                                     }
                                 </div>
                             </div>

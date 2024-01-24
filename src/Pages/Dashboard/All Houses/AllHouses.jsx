@@ -3,6 +3,7 @@ import useLoggedUser from '../../../Hooks/useLogged';
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
 
 const AllHouses = () => {
     const loggedUser = useLoggedUser();
@@ -77,7 +78,7 @@ const AllHouses = () => {
                             <td>{room.rent}</td>
                             <td>
                                 <button className='text-red-600 text-2xl mr-2' onClick={() => handleDelete(room._id)}><MdDelete /></button>
-                                <button className='text-green-600 text-2xl' onClick={() => handleEdit(room)}><MdEdit /></button>
+                                <NavLink to={`/update/${room._id}`} className='text-green-600 text-2xl' onClick={() => handleEdit(room)}><MdEdit /></NavLink>
                             </td>
                         </tr>
                     ))}

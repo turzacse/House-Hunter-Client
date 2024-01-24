@@ -12,8 +12,6 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
-          // Assuming you have an endpoint to verify and get user details using the stored token
-          // You may need to modify this based on your server logic
           const fetchUserDetails = async () => {
             try {
               const response = await axios.post(
@@ -40,7 +38,6 @@ const AuthProvider = ({children}) => {
     const login = (userData) =>{
         setLoading(true);
         setUser(userData);
-
         localStorage.setItem("userData", JSON.stringify(userData));
         console.log("User data stored in localStorage:", userData);
     }

@@ -15,6 +15,8 @@ import Dashboard from './Layout/Dashboard.jsx';
 import AllHouses from './Pages/Dashboard/All Houses/AllHouses.jsx';
 import SingleHouse from './Pages/SingleHouse/SingleHouse.jsx';
 import MyBooking from './Pages/Dashboard/MyBooking/MyBooking.jsx';
+import Update from './Pages/Dashboard/Update/Update.jsx';
+import PrivateRoute from './Authentication/PrivateRoute/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
       {
         path: '/house/:id',
         element: <SingleHouse/>,
+        loader: async({ params }) => await fetch(`http://localhost:3000/rooms/${params.id}`)
+      },
+      {
+        path: '/update/:id',
+        element: <Update/>,
         loader: async({ params }) => await fetch(`http://localhost:3000/rooms/${params.id}`)
       },
       {

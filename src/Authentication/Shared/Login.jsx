@@ -8,9 +8,10 @@ const Login = () => {
     password: '',
   });
 
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, login, logout, loading } = useContext(AuthContext);
+  const { login  } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -30,16 +31,20 @@ const Login = () => {
 
       if (response.ok) {
         const result = await response.json();
-        login(loginData);
+        
+        localStorage.setItem("userData", JSON.stringify(loginData));
+        // login(loginData);
         alert('success');
         navigate(location?.state ? location.state : '/dashboard');
         console.log(result.token); // Output the JWT token received from the server
       } else {
         const errorResult = await response.json();
+        setErr(errorResult.message);
         console.error(`Login failed: ${errorResult.message}`);
       }
     } catch (error) {
       console.error('Error during login:', error);
+      setErr(error);
     }
   };
 
@@ -83,6 +88,9 @@ const Login = () => {
               </div>
               <p className=''>You are new in our website! <NavLink className='text-blue-600' to='/signup'>Please Register</NavLink></p>
               <div className="form-control mt-6">
+                {/* {
+                  err && <p className='text-red-600 font-bold mb-2'> {err}!! Please Try again. </p>
+                } */}
                 <button type="submit" className="btn btn-primary">
                   Login
                 </button>

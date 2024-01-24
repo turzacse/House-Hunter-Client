@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthContext';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,10 @@ const Signup = () => {
     email: '',
     password: '',
   });
+  const [err, setErr] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login  } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,13 +33,18 @@ const Signup = () => {
     
         if (response.ok) {
           const result = await response.json();
-          console.log(result.message); // Output success message from the server
+          console.log(result.message);
+          const loginData = {email: formData.email, password:formData.password};
+          login(loginData);
+          navigate(location?.state ? location.state : '/dashboard');
         } else {
           const errorResult = await response.json();
           console.error(`Registration failed: ${errorResult.message}`);
+          setErr(errorResult.message)
         }
       } catch (error) {
         console.error('Error during registration:', error);
+        setErr(error);
       }
   };
 
@@ -120,8 +130,14 @@ const Signup = () => {
                   required
                 />
               </div>
-              <p className=''>Already Register in our website! <NavLink className='text-blue-600' to='/login'>Please Login</NavLink></p>
+              
+                <p className=''>Already Register in our website! <NavLink className='text-blue-600' to='/login'>Please Login</NavLink></p>
+              
               <div className="form-control mt-6">
+                {
+                   err &&  <p className='text-red-800 font-bold mb-2'>{err}!! Please Try again</p>
+                }
+                
                 <button type="submit" className="btn btn-primary">
                   Register
                 </button>

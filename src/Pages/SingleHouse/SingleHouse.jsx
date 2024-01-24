@@ -29,10 +29,7 @@ const SingleHouse = () => {
         const userData = allUsers.find((data) => data.email === logged?.email);
         setpeople(userData);
     }, [allUsers])
-
-    // console.log(people?.fullName)
-
-    // console.log(people);
+    
     const navigate = useNavigate();
     const location = useLocation();
     const { user, login, logout, loading } = useContext(AuthContext);

@@ -28,7 +28,7 @@ const Navber = () => {
 
     const [logged, setLogged] = useState([]);
     useEffect(() => {
-        const people = localStorage.getItem("userData");
+        const people = localStorage?.getItem("userData");
         if (people) {
             const peopleData = JSON.parse(people);
             setLogged(peopleData);

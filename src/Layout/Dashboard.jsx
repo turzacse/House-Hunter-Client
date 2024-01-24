@@ -31,12 +31,6 @@ const Dashboard = () => {
                         {/* <h1 className="text-3xl font-bold text-center">Speedy Send</h1> */}
                     </div>
                     <ul className="menu p-4 text-lg ">
-                        {/* {logged?.role === 'user' && (<>
-                        <li><NavLink to='/dashboard/book'><FaBook></FaBook> Book a Parcel</NavLink></li>
-                        <li><NavLink to='/dashboard/myparcel'><RiRedPacketFill></RiRedPacketFill>My Parcel </NavLink></li>
-                        <li><NavLink to='/dashboard/profile'><FaUserCircle></FaUserCircle>My Profile</NavLink></li>
-                    </>)
-                    } */}
                     {
                         !logger? <>
                         loading........ 
